@@ -588,34 +588,6 @@ async function EliminarPeticion(indiceVehiculo)
     });
 }
 
-function ModificarPeticion(response)
-{
-    if(response.status == 200)
-    {
-        arrayObjects[indice].id = datos.id;
-        arrayObjects[indice].fabricante = datos.fabricante;
-        arrayObjects[indice].modelo = datos.modelo;
-        arrayObjects[indice].añoLanzamiento = datos.añoLanzamiento;
-
-        if(tipo == "auto")
-        {
-            arrayObjects[indice].cantidadPuertas = datos.cantidadPuertas;
-        }
-        else
-        {
-            arrayObjects[indice].transmision4x4 = datos.transmision4x4;
-        } 
-        DibujarTabla();
-    }
-    else
-    {
-        alert("No se pudo realizar la operacion");
-    }
-
-    document.getElementById("backgroundSpinner").style.display = "none";
-    MostrarOcultar();
-}
-
 async function ModificarVehiculo(tipo, indice)
 {   
     if(tipo == "auto")
