@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio Pre parcial</title>
+    <style>
+        body 
+{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.42em;
+    color:#A7A1AE;
+    background-color:#1F2739;
+
+    margin:0;
+    padding: 0;
+}
+
+
+.botonesStyle
+{
+    min-width: 70px;
+    height: 30px;
+    color: #FB667A;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background: #3d348b;
+    box-shadow: 0 1px #2c0b8e;
+    z-index: 0;
+}
+
+.botonesStyle:hover 
+{
+    box-shadow: 0 3px #2c0b8e;
+    top: 1px;
+}
+
+.botonesStyle:active 
+{
+    box-shadow: 0 0 #2c0b8e;
+    top: 5px;
+}
+
+.titulo 
+{
+    font-size:3em; 
+    font-weight: 300;
+    line-height:1em;
+    text-align: center;
+    color: #4DC3FA;
+}
+
+.Datos
+{
+    text-align: left;
+    overflow: hidden;
+    width: 90%;
+    margin: 0 auto;
+    display: table;
+    
+}
+
+.TablaStyle 
+{
+    display: table;
+    overflow: hidden;
+    width: 100%;
+}
+
+.TablaStyle .cabecera
+{
+    display: table;
+    font-weight: bold;
+    font-size: 1em;
+    text-align: left;
+    color: #FB667A;
+    background-color: transparent;
+    border: none;
+    
+}
+
+.TablaStyle .cabecera:hover 
+{
+    background-color: #464A52;
+    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+    -moz-box-shadow: 0 6px 6px -6px #0E1119;
+    box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+.TablaStyle th 
+{
+    font-weight: bold;
+    font-size: 1em;
+    text-align: left;
+    color: #185875;
+}
+
+
+.TablaStyle td 
+{
+    font-weight: normal;
+    font-size: 1em;
+    -webkit-box-shadow: 0 2px 2px -2px #0E1119;
+    -moz-box-shadow: 0 2px 2px -2px #0E1119;
+    box-shadow: 0 2px 2px -2px #0E1119;
+}
+
+
+.TablaStyle td, .TablaStyle th 
+{
+    font-size: .8em;
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+}
+
+/* Background-color of the odd rows */
+.TablaStyle tr:nth-child(odd) 
+{
+    background-color: #323C50;
+}
+
+/* Background-color of the even rows */
+.TablaStyle th, tr:nth-child(even) 
+{
+    background-color: #2C3446;
+}
+
+
+.TablaStyle td:first-child 
+{ 
+    color: #FB667A; 
+}
+
+.TablaStyle tr:hover 
+{
+    background-color: #464A52;
+    -webkit-box-shadow: 0 6px 6px -6px #0E1119;
+    -moz-box-shadow: 0 6px 6px -6px #0E1119;
+    box-shadow: 0 6px 6px -6px #0E1119;
+}
+
+
+.Alta
+{
+    color: #A7A1AE;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+form
+{
+    color: #A7A1AE;
+    background-color: #181816;
+    border-radius: 15px;
+    padding: 20px;
+    border: 5px solid black;
+}
+
+input{
+    border-radius: 5px;
+}
+
+select
+{
+    border-radius: 15px;
+}
+
+
+#backgroundSpinner
+{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+
+#spinner
+{
+    position: absolute;
+    left: calc(50% - 40px);
+    top: calc(50% - 40px);
+}
+
+
+.lds-roller {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 40px 40px;
+  }
+  .lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #fff;
+    margin: -4px 0 0 -4px;
+  }
+  .lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+  }
+  .lds-roller div:nth-child(1):after {
+    top: 63px;
+    left: 63px;
+  }
+  .lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+  }
+  .lds-roller div:nth-child(2):after {
+    top: 68px;
+    left: 56px;
+  }
+  .lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+  }
+  .lds-roller div:nth-child(3):after {
+    top: 71px;
+    left: 48px;
+  }
+  .lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+  }
+  .lds-roller div:nth-child(4):after {
+    top: 72px;
+    left: 40px;
+  }
+  .lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+  }
+  .lds-roller div:nth-child(5):after {
+    top: 71px;
+    left: 32px;
+  }
+  .lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+  }
+  .lds-roller div:nth-child(6):after {
+    top: 68px;
+    left: 24px;
+  }
+  .lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+  }
+  .lds-roller div:nth-child(7):after {
+    top: 63px;
+    left: 17px;
+  }
+  .lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+  }
+  .lds-roller div:nth-child(8):after {
+    top: 56px;
+    left: 12px;
+  }
+  @keyframes lds-roller {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+    </style>
+</head>
+
+<body>
+    
+    <div id="backgroundSpinner">
+    <div class="lds-roller" id="spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+    </div>
+    
+    
+    
+    <div id="Datos" class="Datos">
+        <h1 class="titulo">Formulario Lista</h1>
+        <br>
+    
+        <table id="tabla" class="TablaStyle">
+            <thred id="thread">
+                <th>ID</th>
+                <th>FABRICANTE</th>
+                <th>MODELO</th>
+                <th>AÑO LANZAMIENTO</th>
+                <th>CANTIDAD PUERTAS</th>
+                <th>TRANSMISION 4X4</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+            </thred>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+        <input type="button" value="Agregar elemento" id="btnAgregar" class="botonesStyle">
+    </div>
+    
+
+    
+    <div id="divAlta" class="Alta">  
+        <form id="formAlta" method="post">
+            <h2>Form Modificacion/Eliminacion</h2>
+            <label>Id:</label>
+            <br>
+            <input type="text" id="txtID">
+            
+            <br>
+            <label>Fabricante:</label>
+            <br>
+            <input type="text" id="txtFabricante" required>
+
+            <br>
+            <label>Modelo:</label>
+            <br>
+            <input type="text" id="txtModelo" required>
+            
+            <br>
+            <label>Año Lanzamiento:</label>
+            <br>
+            <input type="number" step="any" min="1921" id="txtAñoLanzamiento" required>
+
+            <br>
+            <br>
+            <label>Tipo:</label>
+            <select name="tipoAlta" id="tipoAlta" required>
+                <option value = "auto" selected="selected">Auto</option>
+                <option value = "camioneta">Camioneta</option>
+            </select>
+            
+            <div id="autoDiv">
+                <br>
+                <label id="lblCantidadPuertas">Cantidad Puertas</label>
+                <br>
+                <input type="number" step="any" min="2" id="txtCantidadPuertas">
+            </div>
+            
+            <div id="camionetaDiv">
+                <br>
+                <label id="lblTransmision4x4">Transmision 4x4:</label>
+                <br>
+                <input type="text" id="txtTransmision">
+            </div>
+
+            <br>
+            <input type="submit" id="btnAceptar" value="Aceptar" class="botonesStyle">
+            <input type="button" id="btnCancelar" value="Cancelar" class="botonesStyle">
+        </form>
+    
+    </div>
+</body>
+</html>
+
+
+
+<script>
+   let eliminar = 0;
+
+class vehiculo
+{ 
+    constructor(id, fabricante, modelo, añoLanzamiento)
+    {
+        this.id = id;
+        this.fabricante = fabricante;
+        this.modelo = modelo;
+        this.añoLanzamiento = añoLanzamiento;
+
+    }
+
+    toJsonString(conId)
+    {
+        if(conId == true)
+        {
+            return JSON.stringify(this);
+        }
+        else
+        {
+            let datos = ["fabricante", "modelo", "añoLanzamiento"];
+            return JSON.stringify(this, datos);
+        }
+    }
+}
+
+class auto extends vehiculo
+{
+    constructor(id, fabricante, modelo, añoLanzamiento, cantidadPuertas)
+    {
+        super(id, fabricante, modelo, añoLanzamiento);
+        this.cantidadPuertas = cantidadPuertas;
+    }
+
+    toJsonString(conId)
+    {
+        if(conId == true)
+        {
+            return JSON.stringify(this);
+        }
+        else
+        {
+            let datos = ["fabricante", "modelo", "añoLanzamiento", "cantidadPuertas"];
+            return JSON.stringify(this, datos);
+        }
+    }
+}
+
+class camioneta extends auto
+{
+    constructor(id, fabricante, modelo, añoLanzamiento, transmision4x4)
+    {
+        super(id, fabricante, modelo, añoLanzamiento);
+        this.transmision4x4 = transmision4x4;
+    }
+
+    toJsonString(conId)
+    {
+        if(conId == true)
+        {
+            return JSON.stringify(this);
+        }
+        else
+        {
+            let datos = ["fabricante", "modelo", "añoLanzamiento", "transmision4x4"];
+            return JSON.stringify(this, datos);
+        }
+    }
+}
+
+function DibujarTabla()
+{
+    if(document.getElementById("divAlta").style.display == "block")
+    {
+        document.getElementById("divAlta").style.display = "none";
+    }
+
+    EliminarTabla();
+    
+    let tbody = document.getElementById("tbody");
+    for(let i = 0; i < arrayObjects.length; i++)
+    {
+        CrearFila(tbody, arrayObjects[i]);
+    }
+}
+
+function CrearFila(tbody, obj)
+{
+    
+    let datos = [parseInt(obj['id']), obj['fabricante'], obj['modelo'], obj['añoLanzamiento'], obj['cantidadPuertas'], obj['transmision4x4'] ];
+    let tr = document.createElement("tr");
+        
+    //Creo las 6 columnas
+    for(let i = 0; i < 6; i++)
+    {
+        td = document.createElement("td");
+        if(!(typeof datos[i] == 'undefined'))
+        {
+            td.textContent = datos[i];
+        }
+        else
+        {
+            td.textContent = "N/A";
+        }
+
+        tr.appendChild(td);
+    }
+        
+
+    let botonModificar = document.createElement("button");
+    botonModificar.id = "btnModificar";
+    botonModificar.textContent = "Modificar";
+    botonModificar.addEventListener("click", Modificar);
+
+    let botonEliminar = document.createElement("button");
+    botonEliminar.id = "btnEliminar";
+    botonEliminar.textContent = "Eliminar";
+    botonEliminar.addEventListener("click", EliminarVehiculo);
+
+    
+    tr.appendChild(document.createElement("td"));
+    tr.appendChild(document.createElement("td"));
+
+    tr.childNodes[6].appendChild(botonModificar);
+    tr.childNodes[7].appendChild(botonEliminar);
+
+    tbody.appendChild(tr);
+}  
+
+function CargarEventos()
+{
+    let btnAgregar = document.getElementById("btnAgregar");
+    let btnAceptar = document.getElementById("btnAceptar");
+    let selectAlta = document.getElementById("tipoAlta");
+    let btnCancelar = document.getElementById("btnCancelar");
+
+    btnAgregar.addEventListener("click", MostrarOcultar);
+    btnAceptar.addEventListener("click", Aceptar);
+    selectAlta.addEventListener("change", ChangeSelect);
+    btnCancelar.addEventListener("click", MostrarOcultar);
+
+}
+
+function Aceptar()
+{
+    let form = document.getElementById("formAlta");
+    event.preventDefault();
+
+    if(!ValidacionABM())
+    {
+        alert("Datos incorrectos");
+        return;
+    }
+
+    document.getElementById("backgroundSpinner").style.display = "block";
+    let id = form['txtID'].value;
+    let fabricante = form['txtFabricante'].value;
+    let modelo = form['txtModelo'].value;
+    let añoLanzamiento = form['txtAñoLanzamiento'].value;
+    let tipo = form['tipoAlta'].value;
+
+    let datos = {};
+    datos.fabricante = fabricante;
+    datos.modelo = modelo;
+    datos.añoLanzamiento = añoLanzamiento;
+
+    if(eliminar == 1)
+    {
+        for(let i = 0; i < arrayObjects.length; i++)
+        {
+            if(arrayObjects[i].id == id)
+            {
+                EliminarPeticion(i);
+            }
+        }
+        eliminar = 0;
+        return;
+    }
+
+    for(let i = 0; i < arrayObjects.length; i++)
+    {
+        if(arrayObjects[i].id == id)
+        {   
+            ModificarVehiculo(tipo, i);
+            return;
+        }
+    }
+
+    AltaVehiculo(tipo, datos);
+    return;
+}
+
+async function EliminarPeticion(indiceVehiculo)
+{
+    await fetch('http://localhost:5000/vehiculos/eliminarvehiculo',
+    {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+            },
+        body: JSON.stringify(arrayObjects[indiceVehiculo]),
+    }).then(function(response)
+    {
+        if(response.status == 200)
+        {
+            arrayObjects.splice(indiceVehiculo, 1);
+        }else
+        {
+            alert("No se pudo eliminar");
+        }
+
+        DibujarTabla();
+        MostrarOcultar();
+        document.getElementById("backgroundSpinner").style.display = "none";
+    });
+}
+
+function ModificarPeticion(response)
+{
+    if(response.status == 200)
+    {
+        arrayObjects[indice].id = datos.id;
+        arrayObjects[indice].fabricante = datos.fabricante;
+        arrayObjects[indice].modelo = datos.modelo;
+        arrayObjects[indice].añoLanzamiento = datos.añoLanzamiento;
+
+        if(tipo == "auto")
+        {
+            arrayObjects[indice].cantidadPuertas = datos.cantidadPuertas;
+        }
+        else
+        {
+            arrayObjects[indice].transmision4x4 = datos.transmision4x4;
+        } 
+        DibujarTabla();
+    }
+    else
+    {
+        alert("No se pudo realizar la operacion");
+    }
+
+    document.getElementById("backgroundSpinner").style.display = "none";
+    MostrarOcultar();
+}
+
+async function ModificarVehiculo(tipo, indice)
+{   
+    if(tipo == "auto")
+    {
+        response = await fetch('http://localhost:5000/vehiculos/modificarauto',{
+            method : "POST",
+            headers: {
+                'Content-Type': 'application/json'
+                },
+            body: JSON.stringify(arrayObjects[indice]),
+        }).then(function(response){
+            if(response.status == 200){
+                arrayObjects[indice].fabricante = document.getElementById("txtFabricante").value ;
+                arrayObjects[indice].modelo =  document.getElementById("txtModelo").value;
+                arrayObjects[indice].añoLanzamiento =  document.getElementById("txtAñoLanzamiento").value;
+                arrayObjects[indice].cantidadPuertas = document.getElementById("txtCantidadPuertas").value;
+                DibujarTabla();
+            }else{
+                alert("Error al modificar");
+            }
+            MostrarOcultar();
+            document.getElementById("backgroundSpinner").style.display = "none";
+        });
+    }
+    else{
+        response = await fetch('http://localhost:5000/vehiculos/modificarcamioneta',{
+            method : "POST",
+            headers: {
+                'Content-Type': 'application/json'
+                },
+            body: JSON.stringify(arrayObjects[indice]),
+        }).then(function(response) {
+            if(response.status == 200){
+                arrayObjects[indice].fabricante = document.getElementById("txtFabricante").value ;
+                arrayObjects[indice].modelo =  document.getElementById("txtModelo").value;
+                arrayObjects[indice].añoLanzamiento =  document.getElementById("txtAñoLanzamiento").value;
+                let transmision = document.getElementById("txtTransmision").value;
+                transmision = transmision.toUpperCase();
+                arrayObjects[indice].transmision4x4 = transmision;
+                DibujarTabla();
+            }else{
+                alert("Error al modificar");
+            }
+            MostrarOcultar();
+            document.getElementById("backgroundSpinner").style.display = "none";
+        });
+    }
+}
+
+function AltaVehiculo(tipo, datos)
+{
+    let cantidadPuertas = form['txtCantidadPuertas'].value;
+    let transmision = form['txtTransmision'].value;
+
+    if(tipo == "auto")
+    {
+        datos.cantidadPuertas = cantidadPuertas;
+        let xhtpp = new XMLHttpRequest();
+        xhtpp.onreadystatechange = function()
+        {
+            if(this.readyState == 4)
+            {
+                if(this.status == 200)
+                {
+                    let body = JSON.parse(this.responseText);
+                    let nuevoAuto = new auto(body.id, datos.fabricante, datos.modelo, datos.añoLanzamiento, datos.cantidadPuertas);
+                    arrayObjects.push(nuevoAuto);
+                    DibujarTabla();
+                    document.getElementById("backgroundSpinner").style.display = "none";
+                    MostrarOcultar();
+                }
+                else
+                {
+                    alert("No se pudo realizar la operacion");
+                }
+            }
+        }
+        xhtpp.open("PUT", 'http://localhost:5000/vehiculos/insertarauto');
+        xhtpp.setRequestHeader('Content-type', 'application/json');
+        xhtpp.send(JSON.stringify(datos));
+    }
+    else
+    {
+        transmision = transmision.toUpperCase()
+        datos.transmision4x4 = transmision;
+        let xhtpp = new XMLHttpRequest();
+        xhtpp.onreadystatechange = function()
+        {
+            if(this.readyState == 4)
+            {
+                if(this.status == 200)
+                {
+                    let body = JSON.parse(this.responseText);
+                    let nuevoAuto = new camioneta(body.id, datos.fabricante, datos.modelo, datos.añoLanzamiento, datos.transmision4x4);
+                    arrayObjects.push(nuevoAuto);
+                    DibujarTabla();
+                    document.getElementById("backgroundSpinner").style.display = "none";
+                    MostrarOcultar();
+                }
+                else
+                {
+                    alert("No se pudo realizar la operacion");
+                }
+            }
+        }
+        xhtpp.open("PUT", 'http://localhost:5000/vehiculos/insertarcamioneta');
+        xhtpp.setRequestHeader('Content-type', 'application/json');
+        xhtpp.send(JSON.stringify(datos));
+    }
+
+
+}
+
+function EliminarTabla()
+{
+    let tbody = document.getElementById("tbody");
+    let cantidad = tbody.childElementCount;
+
+    for(let i = 0; i < cantidad; i++)
+    {
+        tbody.removeChild(tbody.lastChild);
+    }
+}
+
+function Modificar()
+{
+    MostrarOcultar();
+
+    let td = event.currentTarget.parentNode;
+    let tr = td.parentNode;
+
+    let txtId = document.getElementById("txtID");
+    let txtFabricante = document.getElementById("txtFabricante");
+    let txtModelo = document.getElementById("txtModelo");
+    let txtAñoLanzamiento = document.getElementById("txtAñoLanzamiento");
+    let txtCantidadPuertas = document.getElementById("txtCantidadPuertas");
+    let txtTransmision = document.getElementById("txtTransmision");
+    let selectAlta = document.getElementById("tipoAlta");
+    selectAlta.disabled = true;
+
+    let arrayInputs = [txtId, txtFabricante, txtModelo, txtAñoLanzamiento, txtCantidadPuertas, txtTransmision];
+    
+
+    arrayInputs[0].readOnly = true;
+    for(let i = 0; i < 6; i++)
+    {
+        arrayInputs[i].value = tr.children[i].innerHTML;
+    }
+
+    if(txtTransmision.value == 'N/A')
+    {
+        selectAlta.value = "auto";
+    }
+    else
+    {
+        selectAlta.value = "camioneta";
+    }
+
+    ChangeSelect();
+}
+
+function ChangeSelect()
+{
+    let select = document.getElementById("tipoAlta");
+    if(select.value == 'camioneta')
+    {
+        document.getElementById("autoDiv").style.display = "none";
+        document.getElementById("camionetaDiv").style.display = "block";
+    }
+    else
+    {
+        document.getElementById("camionetaDiv").style.display = "none";
+        document.getElementById("autoDiv").style.display = "block";
+    }
+}
+
+function MostrarOcultar()
+{
+    LimpiarForm();
+    
+    document.getElementById("txtID").readOnly = true;
+
+    let divAlta = document.getElementById("formAlta");
+    let divDatos = document.getElementById("Datos");        
+    
+    document.getElementById("tipoAlta").disabled = false;
+    ChangeSelect();
+    
+    let id = 0
+    
+    arrayObjects.map(function(elemento)
+    {
+        if(elemento.id > id)
+        {
+            id = elemento.id;
+        }
+    }, arrayObjects);
+
+    if(divAlta.style.display == "none")
+    {
+        divAlta.style.display = "block";
+        divDatos.style.display = "none";
+    }
+    else
+    {
+        divAlta.style.display = "none";
+        divDatos.style.display = "block";
+    }
+
+}
+
+function LimpiarForm()
+{
+    let txtId = document.getElementById("txtID");
+    
+    txtId.value = "";
+    txtId.readOnly = false;
+    
+    document.getElementById("txtFabricante").value = "";
+    document.getElementById("txtModelo").value = "";
+    document.getElementById("txtAñoLanzamiento").value = "";
+    document.getElementById("txtCantidadPuertas").value = "";
+    document.getElementById("txtTransmision").value = "";
+}
+
+function EliminarVehiculo()
+{
+    
+    let td = event.currentTarget.parentNode;         
+    let tr = td.parentNode;
+
+    let divAlta = document.getElementById("formAlta");
+    let divDatos = document.getElementById("Datos"); 
+
+    document.getElementById("txtID").value = tr.childNodes[0].innerHTML;
+    document.getElementById("txtFabricante").value = tr.childNodes[1].innerHTML;
+    document.getElementById("txtModelo").value = tr.childNodes[2].innerHTML;
+    document.getElementById("txtAñoLanzamiento").value = tr.childNodes[3].innerHTML;
+    document.getElementById("txtCantidadPuertas").value = tr.childNodes[4].innerHTML;
+    document.getElementById("txtTransmision").value = tr.childNodes[5].innerHTML;
+    
+
+    document.getElementById("tipoAlta").disabled = true;
+
+    if(tr.childNodes[5].innerHTML == "N/A")
+    {
+        document.getElementById("tipoAlta").value = "auto";
+    }else
+    {
+        document.getElementById("tipoAlta").value = "camioneta";
+    }
+    
+    ChangeSelect();
+
+    if(divAlta.style.display == "none")
+    {
+        divAlta.style.display = "block";
+        divDatos.style.display = "none";
+    }
+    else
+    {
+        divAlta.style.display = "none";
+        divDatos.style.display = "block";
+    }
+
+    eliminar = 1;
+}
+
+function ValidacionABM()
+{
+    let fabricante =  document.getElementById("txtFabricante").value;
+    let modelo =  document.getElementById("txtModelo").value;
+    let añoLanzamiento = document.getElementById("txtAñoLanzamiento").value;
+    let cantidadPuertas = document.getElementById("txtCantidadPuertas").value;
+    let transmision = document.getElementById("txtTransmision").value;
+    let tipo = document.getElementById("tipoAlta").value;
+
+
+    if(isNaN(fabricante) && isNaN(modelo) && añoLanzamiento > 1920 && añoLanzamiento % 1 == 0)
+    {
+        if(tipo == "auto")
+        {
+            if(cantidadPuertas >= 2 && cantidadPuertas % 1 == 0)
+            {
+                return true;
+            }
+
+        }else 
+        {
+            if(tipo == "camioneta")
+            {
+                transmision = transmision.toUpperCase()
+                if (transmision == "SI" || transmision == "NO")
+                {
+                    return true;
+                }
+            } 
+            
+        }
+    }
+    return false;
+}
+
+let arrayObjects = null;
+
+
+let response = fetch('http://localhost:5000/vehiculos/vehiculos', {
+    method : "GET",
+    headers: {
+        'Content-Type': 'application/json'
+        },
+});
+
+response.then(function(response)
+{
+    if(response.status == 200)
+    {
+        response.text().then(function(text)
+        {
+            let arrayJson = JSON.parse(text);
+            arrayObjects = arrayJson.map(function(obj)
+            {
+                if(obj.hasOwnProperty('cantidadPuertas'))
+                {
+                    return new auto(obj.id, obj.fabricante, obj.modelo, obj.añoLanzamiento, obj.cantidadPuertas);
+                }
+                else
+                {
+                    return new camioneta(obj.id, obj.fabricante, obj.modelo, obj.añoLanzamiento, obj.transmision4x4);
+                }
+            }, arrayJson);
+            DibujarTabla();
+        });
+    }
+    else
+    {
+        alert("No se pudo realizar la operacion");
+    }
+
+    document.getElementById("backgroundSpinner").style.display = "none";
+}).catch(function()
+{
+    alert("No se pudo conectar");
+    location.reload();
+});
+
+
+let form =  document.getElementById("formAlta");
+form.style.display = "none";
+CargarEventos();
+
+
+
+
+
+</script>
